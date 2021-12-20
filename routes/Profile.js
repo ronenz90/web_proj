@@ -22,7 +22,8 @@ router.get('/:id', function (req, res, next) {
                     link:'/profile/'+user._id,
                     json: costs,
                     link2:'/edit/'+req.params.id,
-                    link3:'/cost/'+req.params.id
+                    link3:'/cost/'+req.params.id,
+                    link4:'/customer/'+req.params.id,
                 });
 
             })
@@ -49,7 +50,7 @@ router.post('/:id', function (req, res, next) {
     var start=req.body.inputYear+'-'+req.body.inputMonth+'-01';
     var end=req.body.inputYear+'-'+req.body.inputMonth+'-31';
         findUserById(req.params.id, res ,user => {
-            findCostById(user.Id_Number, res, start, end, costs => {
+            findCostById(req.body.inputCustomerID, res, start, end, costs => {
                 res.render('profile', {
                     Fullname: user.Fullname,
                     link: '/profile/' + user._id,
