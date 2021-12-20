@@ -2,6 +2,7 @@ const mongoose = require('mongoose');
 
 
 const userSchema = mongoose.Schema({
+    Email:String,
     _id:mongoose.Schema.Types.ObjectId,
     Fullname:String,
     Username:String,
@@ -9,6 +10,7 @@ const userSchema = mongoose.Schema({
     Id_Number:String,
     Birthday:Date,
     Maritalstatus:String,
+    Connected:Boolean,
     Revision:Number,
     City:String
 });

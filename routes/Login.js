@@ -9,9 +9,12 @@ router.get('/', function(req, res, next) {
 });
 
 router.post('/', function(req, res, next) {
-    User.findOne({Username:req.body.inputUsername,Password:req.body.inputPassword})
+    User.findOne({Email:req.body.inputEmail,Password:req.body.inputPassword})
         .exec()
         .then(doc => {
+            User.findOneAndUpdate({_id:doc._id},{
+                Connected:true
+            }).exec();
             console.log(doc);
             if (doc)
                 res.redirect('/profile/'+doc._id);
