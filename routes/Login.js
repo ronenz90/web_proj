@@ -19,7 +19,7 @@ router.post('/', function(req, res, next) {
             if (doc)
                 res.redirect('/profile/'+doc._id);
             else
-                res.status(200).json({
+                res.status(500).json({
                     message:"Username or Password is incorrect",
                     user:req.body.inputUsername,
                     password:req.body.inputPassword
@@ -27,7 +27,11 @@ router.post('/', function(req, res, next) {
         })
         .catch(err => {
             console.log(err);
-            res.status(500).json({error: err});
+            res.status(500).json({
+                message:"Username or Password is incorrect",
+                user:req.body.inputUsername,
+                password:req.body.inputPassword
+            });
         });
 });
 module.exports = router;
