@@ -1,0 +1,21 @@
+include mixins
+doctype
+html( lang="en" )
+    head
+
+        title CashFlow-Main
+        meta( charset='utf-8' )
+        meta( http-equiv='X-UA-Compatible', content='IE=edge' )
+        meta( name='viewport', content='width=device-width, initial-scale=1.0' )
+        meta( name='description', content='Baking Bootstrap Snippets with Jade' )
+        //- Bootswatch Theme
+        link(href="//maxcdn.bootstrapcdn.com/bootswatch/3.3.0/flatly/bootstrap.min.css", rel="stylesheet")
+
+    body(style="padding-bottom:10rem;")
+        script( src='//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js' )
+        script( src='//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js' )
+    .container
+        .jumbotron
+            h1 Hello, #{Fullname}
+            p This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information.
+            p: +button("primary", "more.htm", "large") Learn more

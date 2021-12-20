@@ -1,0 +1,39 @@
+include mixins
+doctype
+html( lang="en" )
+    head
+
+        title CashFlow-Login
+        meta( charset='utf-8' )
+        meta( http-equiv='X-UA-Compatible', content='IE=edge' )
+        meta( name='viewport', content='width=device-width, initial-scale=1.0' )
+        meta( name='description', content='Baking Bootstrap Snippets with Jade' )
+        //- Bootswatch Theme
+        link(href="//maxcdn.bootstrapcdn.com/bootswatch/3.3.0/flatly/bootstrap.min.css", rel="stylesheet")
+
+    body(style="padding-bottom:10rem;")
+        script( src='//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js' )
+        script( src='//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js' )
+
+    .container
+        .row
+            .col-md-5.col-sm-8.col-xs-12
+                .panel.panel-primary
+                    .panel-heading Cost
+                    .panel-body
+                        form(method='POST' action='#{link}')
+                            div.form-group
+                                label(for='inputDate') Date:
+                                input#inputDate.form-control(type='text' placeholder='Enter Date' name='inputDate')
+                            div.form-group
+                                label(for='inputCategory') Category:
+                                input#inputCategory.form-control(type='text' placeholder='Enter Category' name='inputCategory')
+                            div.form-group
+                                label(for='inputName') Name:
+                                input#inputName.form-control(type='text' placeholder='Enter Name' name='inputName')
+                            div.form-group
+                                label(for='inputSum') Sum:
+                                input#inputSum.form-control(type='text' placeholder='Enter Sum' name='inputSum')
+
+                            br
+                            button.btn.btn-primary(type='submit') Create

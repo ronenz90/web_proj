@@ -1,0 +1,74 @@
+include mixins
+doctype
+html( lang="en" )
+    head
+
+        title CashFlow-Main
+        meta( charset='utf-8' )
+        meta( http-equiv='X-UA-Compatible', content='IE=edge' )
+        meta( name='viewport', content='width=device-width, initial-scale=1.0' )
+        meta( name='description', content='Baking Bootstrap Snippets with Jade' )
+        //- Bootswatch Theme
+        link(href="//maxcdn.bootstrapcdn.com/bootswatch/3.3.0/flatly/bootstrap.min.css", rel="stylesheet")
+
+    body(style="padding-bottom:10rem;")
+        script( src='//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js' )
+        script( src='//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js' )
+    .container
+        nav.navbar.navbar-default( role="navigation" )
+            .navbar-header
+                button.navbar-toggle.collapsed( type="button", data-toggle="collapse", data-target="#navbar-inverse", aria-expanded="false", aria-controls="navbar")
+                    span.sr-only Toggle navigation
+                    span.icon-bar
+                    span.icon-bar
+                    span.icon-bar
+                a.navbar-brand(href="#{link}") Comunication
+
+            #navbar-inverse.collapse.navbar-collapse
+                ul.nav.navbar-nav
+                    li.active: a( href="#{link}") Home
+                    li.dropdown
+                        a.dropdown-toggle( href="#", data-toggle="dropdown", role="button", aria-expanded="false" ) Settings
+                            span.caret
+                        ul.dropdown-menu( role="menu" )
+                            li: a( href="#{link2}" ) Edit Profile
+                            li: a( href="#{link3}" ) Import cost
+                    li.active: a( href="/") Logout
+
+
+        .jumbotron
+            h1 Hello, #{Fullname}
+            p Lets see what your money doing today.
+                    br
+                    .panel.panel-primary
+                        .panel-heading Choose Date
+                        .panel-body
+                            form(method='POST' action='')
+                                div.form-group
+                                    label(for='inputMonth') Month:
+                                    input#inputMonth.form-control(type='text' placeholder='Enter Month' name='inputMonth')
+                                div.form-group
+                                    label(for='inputYear') Year:
+                                    input#inputYear.form-control(type='text' placeholder='Enter Year' name='inputYear')
+                                br
+                                .col-md-5
+                                    button.btn.btn-primary(type='submit') Submit
+
+        table.table.table-striped
+            thead
+                tr
+                    th Category
+                    th Description
+                    th Sum
+                    th Date
+
+
+            tbody
+            each val in json
+                tr
+                    td=  val.Category
+                    td=  val.Name
+                    td=  val.Sum
+                    td=  val.Date
+
+

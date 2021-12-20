@@ -1,0 +1,42 @@
+include mixins
+doctype
+html( lang="en" )
+    head
+
+        title CashFlow-Login
+        meta( charset='utf-8' )
+        meta( http-equiv='X-UA-Compatible', content='IE=edge' )
+        meta( name='viewport', content='width=device-width, initial-scale=1.0' )
+        meta( name='description', content='Baking Bootstrap Snippets with Jade' )
+        //- Bootswatch Theme
+        link(href="//maxcdn.bootstrapcdn.com/bootswatch/3.3.0/flatly/bootstrap.min.css", rel="stylesheet")
+
+    body(style="padding-bottom:10rem;")
+        script( src='//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js' )
+        script( src='//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js' )
+
+    .container
+        .row
+            .col-md-5.col-sm-8.col-xs-12
+                .panel.panel-primary
+                    .panel-heading Change Profile Details
+                    .panel-body
+                        form(method='POST' action='#{link}')
+
+                            div.form-group
+                                label(for='inputFullname') Fullname:
+                                input#inputFullname.form-control(type='text' placeholder='Enter Fullname' name='inputFullname')
+                            div.form-group
+                                label(for='inputUsername') Username:
+                                input#inputUsername.form-control(type='text' placeholder='Enter Username' name='inputUsername')
+                            div.form-group
+                                label(for='inputPassword') Password:
+                                input#inputPassword.form-control(type='text' placeholder='Enter Password' name='inputPassword')
+                            div.form-group
+                                label(for='inputMaritalstatus') Marital status:
+                                input#inputMaritalstatus.form-control(type='text' placeholder='Enter Marital status' name='inputMaritalstatus')
+                            div.form-group
+                                label(for='inputCity') City:
+                                input#inputCity.form-control(type='text' placeholder='Enter City' name='inputCity')
+                            br
+                            button.btn.btn-primary(type='Update') Update
