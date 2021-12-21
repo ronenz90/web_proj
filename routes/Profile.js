@@ -24,6 +24,9 @@ router.get('/:id', function (req, res, next) {
                     link2:'/edit/'+req.params.id,
                     link3:'/cost/'+req.params.id,
                     link4:'/customer/'+req.params.id,
+                    link5: '/Details/'+req.params.id,
+                    link6: '/ChangePassword/'+req.params.id
+
                 });
 
             })
@@ -56,7 +59,10 @@ router.post('/:id', function (req, res, next) {
                     link: '/profile/' + user._id,
                     json: costs,
                     link2: '/edit/' + req.params.id,
-                    link3: '/cost/' + req.params.id
+                    link3: '/cost/' + req.params.id,
+                    link4:'/customer/'+req.params.id,
+                    link5: '/Details/'+req.params.id,
+                    link6: '/ChangePassword/'+req.params.id
                 });
 
             });

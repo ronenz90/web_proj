@@ -8,6 +8,7 @@ const customerSchema = mongoose.Schema({
     Id_Number:String,
     Birthday:Date,
     Maritalstatus:String,
+    Tel:String,
     City:String
 });
 

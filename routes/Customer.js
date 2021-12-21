@@ -36,6 +36,7 @@ router.post('/:id',(req,res,next)=> {
         Id_Number: req.body.inputId,
         Birthday: req.body.inputBirthday,
         Maritalstatus:req.body.inputMaritalstatus,
+        Tel:req.body.inputTel,
         City:req.body.inputCity
     });
 
