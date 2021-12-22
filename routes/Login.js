@@ -9,14 +9,17 @@ router.get('/', function(req, res, next) {
 });
 
 router.post('/', function(req, res, next) {
-    User.findOne({Username:req.body.inputUsername,Password:req.body.inputPassword})
+    User.findOne({Email:req.body.inputEmail,Password:req.body.inputPassword})
         .exec()
         .then(doc => {
+            User.findOneAndUpdate({_id:doc._id},{
+                Connected:true
+            }).exec();
             console.log(doc);
             if (doc)
                 res.redirect('/profile/'+doc._id);
             else
-                res.status(200).json({
+                res.status(500).json({
                     message:"Username or Password is incorrect",
                     user:req.body.inputUsername,
                     password:req.body.inputPassword
@@ -24,7 +27,11 @@ router.post('/', function(req, res, next) {
         })
         .catch(err => {
             console.log(err);
-            res.status(500).json({error: err});
+            res.status(500).json({
+                message:"Username or Password is incorrect",
+                user:req.body.inputUsername,
+                password:req.body.inputPassword
+            });
         });
 });
 module.exports = router;

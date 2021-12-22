@@ -1,18 +1,15 @@
 const mongoose = require('mongoose');
 
 
-const userSchema = mongoose.Schema({
+const customerSchema = mongoose.Schema({
     Email:String,
     _id:mongoose.Schema.Types.ObjectId,
     Fullname:String,
-    Username:String,
-    Password:String,
     Id_Number:String,
     Birthday:Date,
     Maritalstatus:String,
-    Connected:Boolean,
-    Revision:Number,
+    Tel:String,
     City:String
 });
 
-module.exports = mongoose.model('User',userSchema,"User");
+module.exports = mongoose.model('Customer',customerSchema,"Customers");
