@@ -6,41 +6,67 @@ const Cost=require('../models/cost');
 
 
 router.get('/:id', function (req, res, next) {
-
     findUserById(req.params.id, res ,user =>
     {
-        console.log(user.Id_Number);
-        var date=new Date();
-        var start=date.getFullYear()+'-'+(date.getMonth()+1)+'-01';
-        var end=date.getFullYear()+'-'+(date.getMonth()+1)+'-31';
-        findCostById(user.Id_Number,res,start,end,costs =>{
-            res.render('profile', {
-                Fullname:user.Fullname,
-                link:'/profile/'+user._id,
-                json: costs,
-                link2:'/edit/'+req.params.id,
-                link3:'/cost/'+req.params.id
-            });
+        console.log(user.Connected);
+        if(user.Connected)
+        {
 
-        })
+            console.log(user.Id_Number);
+            var date=new Date();
+            var start=date.getFullYear()+'-'+(date.getMonth()+1)+'-01';
+            var end=date.getFullYear()+'-'+(date.getMonth()+1)+'-31';
+            findCostById(user.Id_Number,res,start,end,costs =>{
+                res.render('profile', {
+                    Fullname:user.Fullname,
+                    link:'/profile/'+user._id,
+                    json: costs,
+                    link2:'/edit/'+req.params.id,
+                    link3:'/cost/'+req.params.id,
+                    link4:'/customer/'+req.params.id,
+                    link5: '/Details/'+req.params.id,
+                    link6: '/ChangePassword/'+req.params.id
+
+                });
+
+            })
+        }
+        else
+        {
+            res.status(200).redirect('/');
+        }
     });
 });
+
+router.get('/:id/logout', function (req, res, next) {
+    findUserById(req.params.id, res ,user =>
+    {
+        User.findOneAndUpdate({_id:user._id},{
+            Connected:false
+        }).exec();
+    });
+    res.status(200).redirect('/');
+});
+
 
 router.post('/:id', function (req, res, next) {
     var start=req.body.inputYear+'-'+req.body.inputMonth+'-01';
     var end=req.body.inputYear+'-'+req.body.inputMonth+'-31';
-    findUserById(req.params.id, res ,user => {
-        findCostById(user.Id_Number, res, start, end, costs => {
-            res.render('profile', {
-                Fullname: user.Fullname,
-                link: '/profile/' + user._id,
-                json: costs,
-                link2: '/edit/' + req.params.id,
-                link3: '/cost/' + req.params.id
-            });
+        findUserById(req.params.id, res ,user => {
+            findCostById(req.body.inputCustomerID, res, start, end, costs => {
+                res.render('profile', {
+                    Fullname: user.Fullname,
+                    link: '/profile/' + user._id,
+                    json: costs,
+                    link2: '/edit/' + req.params.id,
+                    link3: '/cost/' + req.params.id,
+                    link4:'/customer/'+req.params.id,
+                    link5: '/Details/'+req.params.id,
+                    link6: '/ChangePassword/'+req.params.id
+                });
 
+            });
         });
-    });
 });
 module.exports = router;
 
