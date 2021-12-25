@@ -1,0 +1,43 @@
+html( lang="en" )
+    head
+
+        title CashFlow-Login
+        meta( charset='utf-8' )
+        meta( http-equiv='X-UA-Compatible', content='IE=edge' )
+        meta( name='viewport', content='width=device-width, initial-scale=1.0' )
+        meta( name='description', content='Baking Bootstrap Snippets with Jade' )
+        //- Bootswatch Theme
+        link(href="//maxcdn.bootstrapcdn.com/bootswatch/3.3.0/flatly/bootstrap.min.css", rel="stylesheet")
+
+    body(style="padding-bottom:10rem;")
+        script( src='//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js' )
+        script( src='//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js' )
+
+    .jumbotron
+        h1 CUSTOMER TABLE
+    table.table.table-striped
+        thead
+            tr
+                th Fullname
+                th Email
+                th Id_Number
+                th Birthday
+                th Maritalstatus
+                th Tel
+                th City
+                th Edit
+
+
+        tbody
+            each val in json
+                tr
+                    td=  val.Fullname
+                    td=  val.Email
+                    td=  val.Id_Number
+                    td=  val.Birthday
+                    td=  val.Maritalstatus
+                    td=  val.Tel
+                    td=  val.City
+                    td
+                        button.btn.btn-indigo.btn-sm.m-0(type='button') Edit
+

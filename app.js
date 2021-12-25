@@ -14,9 +14,13 @@ db.on('error', console.error.bind(console, 'MongoDB connection error:'));
 
 var loginRouter = require('./routes/login');
 var signupRouter = require('./routes/users');
+var detailRouter = require('./routes/Details');
 var profileRouter= require('./routes/Profile');
 var editRouter= require('./routes/edit');
 var costsRouter = require('./routes/cost');
+var customerRouter = require('./routes/customer');
+var ChangePasswordRouter = require('./routes/ChangePassword');
+
 
 var app = express();
 
@@ -36,6 +40,9 @@ app.use('/signup',signupRouter);
 app.use('/Profile',profileRouter);
 app.use('/Edit',editRouter);
 app.use('/cost',costsRouter);
+app.use('/customer',customerRouter);
+app.use(`/Details`, detailRouter);
+app.use(`/ChangePassword`,ChangePasswordRouter );
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
