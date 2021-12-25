@@ -1,8 +1,10 @@
 var express = require('express');
 var router = express.Router();
 var mongoose = require('mongoose');
+var validator = require('validator');
 const User = require('../models/user');
 const userChanges= require('../models/userChanges');
+const crypto = require("crypto");
 
 /* GET users listing. */
 router.get('/', function(req, res, next) {
@@ -11,6 +13,7 @@ router.get('/', function(req, res, next) {
 
 router.post('/',(req,res,next)=>
 {
+  const password=SetPassword(req.body.inputPassword);
   User.findOne({Email:req.body.inputEmail}).exec().then(doc => {
     if (doc)
     {
@@ -19,7 +22,14 @@ router.post('/',(req,res,next)=>
     }
     else
     {
-      saveUser();
+      if(validator.isEmail(req.body.inputEmail))
+      {
+        saveUser();
+      }
+      else
+      {
+        return res.status(500).send('ERROR:Email Is Not Correct');
+      }
     }
   });
 
@@ -28,7 +38,8 @@ router.post('/',(req,res,next)=>
     Fullname: req.body.inputFullname,
     Email:req.body.inputEmail,
     Username: req.body.inputUsername,
-    Password: req.body.inputPassword,
+    Password: password[1],
+    Salt: password[0],
     Id_Number: req.body.inputId,
     Birthday: req.body.inputBirthday,
     Maritalstatus:req.body.inputMaritalstatus,
@@ -47,6 +58,8 @@ router.post('/',(req,res,next)=>
   }
 
 });
+
+
 
 module.exports = router;
 

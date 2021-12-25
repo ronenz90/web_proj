@@ -13,7 +13,7 @@ router.post('/:id', function(req, res, next) {
         {
             var a=req.body.inputNewPassword.toString();
             var b=req.body.inputRepeat.toString();
-            var c=req.body.inputOldPassword.toString();
+            var c=GetPassword(user.Salt,req.body.inputOldPassword).toString();
             var d=user.Password.toString();
 
             if(a==b)
@@ -22,7 +22,7 @@ router.post('/:id', function(req, res, next) {
                 console.log(d);
                 if(c==d)
                 {
-                    User.findOneAndUpdate({_id:req.params.id},{Password:req.body.inputNewPassword}).exec()
+                    User.findOneAndUpdate({_id:req.params.id},{Password:GetPassword(user.Salt,req.body.inputNewPassword)}).exec()
                         .then(doc =>
                         {
                             if(doc)
