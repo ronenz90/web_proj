@@ -20,6 +20,7 @@ var editRouter= require('./routes/edit');
 var costsRouter = require('./routes/cost');
 var customerRouter = require('./routes/customer');
 var ChangePasswordRouter = require('./routes/ChangePassword');
+var MonthlyBillRouter = require('./routes/MonthlyBill');
 
 
 var app = express();
@@ -43,6 +44,7 @@ app.use('/cost',costsRouter);
 app.use('/customer',customerRouter);
 app.use(`/Details`, detailRouter);
 app.use(`/ChangePassword`,ChangePasswordRouter );
+app.use(`/MonthlyBill`,MonthlyBillRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
