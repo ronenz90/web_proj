@@ -12,9 +12,3 @@ const SetPasseord = (password) => {
     return [hmac, salt];
 }
 
-const _password = 'Aa123456'
-const hash_pass = SetPasseord(_password);
-pass = hash_pass[0];
-salt = hash_pass[1];
-console.log(pass)
-console.log(salt)
