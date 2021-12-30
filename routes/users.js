@@ -5,6 +5,7 @@ var validator = require('validator');
 const User = require('../models/user');
 const userChanges= require('../models/userChanges');
 const crypto = require("crypto");
+const History=require('../models/history');
 
 /* GET users listing. */
 router.get('/', function(req, res, next) {
@@ -24,7 +25,17 @@ router.post('/',(req,res,next)=>
     {
       if(validator.isEmail(req.body.inputEmail))
       {
-        saveUser();
+        if(validator.isStrongPassword(req.body.inputPassword,{minLength: 10, minLowercase: 1,
+          minUppercase: 1, minNumbers: 1, minSymbols: 1
+        }))
+        {
+            saveUser();
+            CreateHistory();
+        }
+        else
+        {
+          return res.status(500).send('ERROR:Week Password');
+        }
       }
       else
       {
@@ -51,12 +62,27 @@ router.post('/',(req,res,next)=>
   function saveUser() {
     user.save().then(result => {
       console.log(result);
-      res.status(200).redirect('/')
+      res.status(200).redirect('/');
     }).catch(err => {
       res.status(500).send('ERROR: User Already Exist');
     });
   }
 
+  function CreateHistory()
+  {
+    history.save().then(result =>{
+      console.log(result);
+      res.status(200).redirect('/');
+    }).catch(err => {
+      res.status(500).send('ERROR: User Already Exist');
+    });
+  }
+  const history=new History({
+    _id:user._id,
+    Password1:password[1],
+    Password2:null,
+    Password3:null
+  });
 });
 
 
