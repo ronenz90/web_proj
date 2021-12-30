@@ -1,0 +1,40 @@
+include mixins
+doctype
+html( lang="en" )
+    head
+
+        title Mounthly Bill
+        meta( charset='utf-8' )
+        meta( http-equiv='X-UA-Compatible', content='IE=edge' )
+        meta( name='viewport', content='width=device-width, initial-scale=1.0' )
+        meta( name='description', content='Baking Bootstrap Snippets with Jade' )
+        //- Bootswatch Theme
+        link(href="//maxcdn.bootstrapcdn.com/bootswatch/3.3.0/flatly/bootstrap.min.css", rel="stylesheet")
+
+    body(style="padding-bottom:10rem;")
+        script( src='//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js' )
+        script( src='//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js' )
+
+        .jumbotron
+            h1 Customer Monthly Bill
+
+            table.table.table-striped
+                thead
+                    tr
+                        th Customer
+                        th Category
+                        th Description
+                        th Sum
+                        th Period
+                        th Date
+
+
+                tbody
+                each val in json
+                    tr
+                        td=  val.Id_Number
+                        td=  val.Category
+                        td=  val.Name
+                        td=  val.Sum
+                        td=  val.Period
+                        td=  val.Date

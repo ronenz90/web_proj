@@ -7,6 +7,10 @@
 var app = require('../app');
 var debug = require('debug')('cashflowexpress:server');
 var http = require('http');
+const https = require('https');
+const fs = require('fs');
+const tls = require('tls');
+const constants  = require('crypto');
 
 /**
  * Get port from environment and store in Express.
@@ -19,7 +23,16 @@ app.set('port', port);
  * Create HTTP server.
  */
 
-var server = http.createServer(app);
+//var server = http.createServer(app);
+
+const server = https.createServer({
+  key: fs.readFileSync('../Certificate/key.pem'),
+  cert: fs.readFileSync('../Certificate/cert.pem'),
+  secureOptions: constants.SSL_OP_NO_SSLv2 |
+                 constants.SSL_OP_NO_SSLv3 |
+                 constants.SSL_OP_NO_TLSv1|
+                 constants.SSL_OP_NO_TLSv1_1
+}, app);
 
 /**
  * Listen on provided port, on all network interfaces.
