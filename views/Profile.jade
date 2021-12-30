@@ -60,25 +60,4 @@ html( lang="en" )
                                 .col-md-5
                                     button.btn.btn-primary(type='submit') Submit
 
-        table.table.table-striped
-            thead
-                tr
-                    th Customer
-                    th Category
-                    th Description
-                    th Sum
-                    th Period
-                    th Date
-
-
-            tbody
-            each val in json
-                tr
-                    td=  val.Id_Number
-                    td=  val.Category
-                    td=  val.Name
-                    td=  val.Sum
-                    td=  val.Period
-                    td=  val.Date
-
 
