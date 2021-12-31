@@ -19,7 +19,7 @@ router.post('/',(req,res,next)=>
     if (doc)
     {
       console.log(doc);
-      res.status(500).send('ERROR: User Already Exist');
+      res.status(500).send('ERROR: User with this Email Already Exist');
     }
     else
     {
