@@ -21,7 +21,8 @@ router.post('/', function(req, res, next) {
                         }).exec();
                         res.redirect('/profile/' + doc._id);
                     } else {
-                        window.confirm("Password is incorrect");
+                        res.status(500).json({
+                            message: "Password is incorrect"});
                     }
                 } else
                     res.status(500).json({
@@ -30,7 +31,8 @@ router.post('/', function(req, res, next) {
             })
             .catch(err => {
                 console.log(err);
-                window.confirm("Username or Password is incorrect");
+                res.status(500).json({
+                    message: "Username or Password is not correct"});
             });
 
 });
