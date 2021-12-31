@@ -19,12 +19,18 @@ html( lang="en" )
         .row
             .col-md-5.col-sm-8.col-xs-12
                 .panel.panel-primary
-                    .panel-heading Cost
+                    .panel-heading Customer Purchase
                     .panel-body
                         form(method='POST' action='#{link}')
                             div.form-group
+                                label(for='inputId') Customer Id:
+                                input#inputId.form-control(type='text' placeholder='Enter Customer Id' name='inputId')
+                            div.form-group
                                 label(for='inputDate') Date:
                                 input#inputDate.form-control(type='text' placeholder='Enter Date' name='inputDate')
+                            div.form-group
+                                label(for='inputPeriod') Period:
+                                input#inputPeriod.form-control(type='text' placeholder='Enter Period' name='inputPeriod')
                             div.form-group
                                 label(for='inputCategory') Category:
                                 input#inputCategory.form-control(type='text' placeholder='Enter Category' name='inputCategory')

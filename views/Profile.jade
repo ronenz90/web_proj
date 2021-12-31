@@ -27,23 +27,29 @@ html( lang="en" )
             #navbar-inverse.collapse.navbar-collapse
                 ul.nav.navbar-nav
                     li.active: a( href="#{link}") Home
+                    li.active: a( href="#{link4}") New Customer
+                    li.active: a( href="#{link3}") New purchase
+                    li.active: a( href="#{link5}") Customer Details
                     li.dropdown
                         a.dropdown-toggle( href="#", data-toggle="dropdown", role="button", aria-expanded="false" ) Settings
                             span.caret
                         ul.dropdown-menu( role="menu" )
                             li: a( href="#{link2}" ) Edit Profile
-                            li: a( href="#{link3}" ) Import cost
-                    li.active: a( href="/") Logout
+                            li: a( href="#{link6}" ) Change Password
+                    li.active: a( href="#{link}/logout") Logout
 
 
         .jumbotron
             h1 Hello, #{Fullname}
-            p Lets see what your money doing today.
+            p Search for customer purchases
                     br
                     .panel.panel-primary
                         .panel-heading Choose Date
                         .panel-body
                             form(method='POST' action='')
+                                div.form-group
+                                    label(for='inputCustomerID') Customer ID:
+                                    input#inputCustomerID.form-control(type='text' placeholder='Enter CustomerID' name='inputCustomerID')
                                 div.form-group
                                     label(for='inputMonth') Month:
                                     input#inputMonth.form-control(type='text' placeholder='Enter Month' name='inputMonth')
@@ -53,22 +59,5 @@ html( lang="en" )
                                 br
                                 .col-md-5
                                     button.btn.btn-primary(type='submit') Submit
-
-        table.table.table-striped
-            thead
-                tr
-                    th Category
-                    th Description
-                    th Sum
-                    th Date
-
-
-            tbody
-            each val in json
-                tr
-                    td=  val.Category
-                    td=  val.Name
-                    td=  val.Sum
-                    td=  val.Date
 
 
