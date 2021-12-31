@@ -9,29 +9,31 @@ router.get('/', function(req, res, next) {
 });
 
 router.post('/', function(req, res, next) {
-    User.findOne({Email:req.body.inputEmail,Password:req.body.inputPassword})
-        .exec()
-        .then(doc => {
-            User.findOneAndUpdate({_id:doc._id},{
-                Connected:true
-            }).exec();
-            console.log(doc);
-            if (doc)
-                res.redirect('/profile/'+doc._id);
-            else
+        User.findOne({Email: req.body.inputEmail})
+            .exec()
+            .then(doc => {
+                if (doc) {
+                    console.log(doc.Password);
+                    console.log(GetPassword(doc.Salt, req.body.inputPassword));
+                    if (doc.Password == GetPassword(doc.Salt, req.body.inputPassword)) {
+                        User.findOneAndUpdate({_id: doc._id}, {
+                            Connected: true
+                        }).exec();
+                        res.redirect('/profile/' + doc._id);
+                    } else {
+                        res.status(500).json({
+                            message: "Password is incorrect"});
+                    }
+                } else
+                    res.status(500).json({
+                        message: "Email is incorrect"
+                    });
+            })
+            .catch(err => {
+                console.log(err);
                 res.status(500).json({
-                    message:"Username or Password is incorrect",
-                    user:req.body.inputUsername,
-                    password:req.body.inputPassword
-                });
-        })
-        .catch(err => {
-            console.log(err);
-            res.status(500).json({
-                message:"Username or Password is incorrect",
-                user:req.body.inputUsername,
-                password:req.body.inputPassword
+                    message: "Username or Password is not correct"});
             });
-        });
+
 });
 module.exports = router;
