@@ -2,6 +2,7 @@ var express = require('express');
 var router = express.Router();
 var mongoose = require('mongoose');
 var validator = require('validator');
+var passwordValidator=require('password-validator');
 const User = require('../models/user');
 const userChanges= require('../models/userChanges');
 const crypto = require("crypto");
@@ -15,6 +16,7 @@ router.get('/', function(req, res, next) {
 router.post('/',(req,res,next)=>
 {
   const password=SetPassword(req.body.inputPassword);
+  var schema= new passwordValidator();
   User.findOne({Email:req.body.inputEmail}).exec().then(doc => {
     if (doc)
     {
@@ -27,7 +29,7 @@ router.post('/',(req,res,next)=>
       {
         if(validator.isStrongPassword(req.body.inputPassword,{minLength: 10, minLowercase: 1,
           minUppercase: 1, minNumbers: 1, minSymbols: 1
-        }))
+        })&(schema.is().not().oneOf(['Passw0rd', 'Aa12345678!','P@ssw0rd123'])))
         {
             saveUser();
             CreateHistory();
