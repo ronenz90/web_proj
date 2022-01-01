@@ -4,12 +4,13 @@ const User=require('../models/user');
 var mongoose = require('mongoose');
 const History=require('../models/history');
 var validator = require('validator');
-
+var passwordValidator=require('password-validator');
 
 router.get('/:id', function(req, res, next) {
     res.render('ChangePassword', { title: 'Change Password' });
 });
 router.post('/:id', function(req, res, next) {
+    var schema= new passwordValidator();
     findUserById(req.params.id, res, user => {
         console.log(user.Connected);
         if (user.Connected)
@@ -19,7 +20,7 @@ router.post('/:id', function(req, res, next) {
             var c = GetPassword(user.Salt, req.body.inputOldPassword).toString();
             var d = user.Password.toString();
             if (validator.isStrongPassword(req.body.inputNewPassword, {
-                minLength: 10, minLowercase: 1, minUppercase: 1, minNumbers: 1, minSymbols: 1}))
+                minLength: 10, minLowercase: 1, minUppercase: 1, minNumbers: 1, minSymbols: 1})&&(schema.is().not().oneOf(['Passw0rd', 'Aa12345678!','P@ssw0rd123'])))
             {
 
                 if (a == b)

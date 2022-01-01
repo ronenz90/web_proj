@@ -12,6 +12,7 @@ const userSchema = mongoose.Schema({
     Birthday:Date,
     Maritalstatus:String,
     Connected:Boolean,
+    Tries:Number,
     Revision:Number,
     City:String
 });

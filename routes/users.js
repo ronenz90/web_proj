@@ -29,7 +29,7 @@ router.post('/',(req,res,next)=>
       {
         if(validator.isStrongPassword(req.body.inputPassword,{minLength: 10, minLowercase: 1,
           minUppercase: 1, minNumbers: 1, minSymbols: 1
-        })&(schema.is().not().oneOf(['Passw0rd', 'Aa12345678!','P@ssw0rd123'])))
+        })&&(schema.is().not().oneOf(['Passw0rd', 'Aa12345678!','P@ssw0rd123'])))
         {
             saveUser();
             CreateHistory();
@@ -58,6 +58,7 @@ router.post('/',(req,res,next)=>
     Maritalstatus:req.body.inputMaritalstatus,
     Connected:false,
     City:req.body.inputCity,
+    Tries:3,
     Revision:1
   });
 
