@@ -15,12 +15,20 @@ router.post('/', function(req, res, next) {
                 if (doc) {
                     console.log(doc.Password);
                     console.log(GetPassword(doc.Salt, req.body.inputPassword));
+                    if(doc.Tries == 0)
+                    {
+                        res.redirect('/ForgotPassword');
+                    }
                     if (doc.Password == GetPassword(doc.Salt, req.body.inputPassword)) {
                         User.findOneAndUpdate({_id: doc._id}, {
-                            Connected: true
+                            Connected: true,
+                            Tries: 3
                         }).exec();
                         res.redirect('/profile/' + doc._id);
                     } else {
+                        User.findOneAndUpdate({_id: doc._id}, {
+                            Tries: doc.Tries-1
+                        }).exec();
                         res.status(500).json({
                             message: "Password is incorrect"});
                     }
