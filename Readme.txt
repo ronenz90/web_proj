@@ -8,7 +8,7 @@ Our site Bulid on Nodejs-Express environment, there is some tools to run our sit
 Main Instructions:
 1.When the site is running you can enter to https://localhost:3000, then you get the Login page.
 2.In the Login page, you need to Sign up.
-**Importent 
+**Important 
   -The Email address must me Write like: example@example.com
   -The Password must be writen on these ruls:
     1. minimum length: 10
