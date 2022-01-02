@@ -25,13 +25,16 @@ html( lang="en" )
                             div.form-group
                                 label(for='inputEmail') Email:
                                 input#inputEmail.form-control(type='text' placeholder='Enter Email' name='inputEmail')
+
                             div.form-group
                                 label(for='inputPassword') Password:
                                 input#inputPassword.form-control(type='password' placeholder='Enter Password' name='inputPassword')
-                            br
-                            +button("default", "/signup", "medium") Sign-up
+
+                            button.btn.btn-primary("default", "/signup", "medium") Sign-up
                             .col-md-5
                                 button.btn.btn-primary(type='submit') Submit
+                            br
+                            br
                             +button("default", "/ForgotPassword", "medium") Forgot Password
 
 
