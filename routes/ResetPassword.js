@@ -5,9 +5,13 @@ const validator = require("validator");
 const router = express.Router();
 
 
-router.post('/', function(req, res, next) {
-    res.render('ResetPassword', { title: 'Reset Password' });
+router.get('/:Email', function(req, res, next) {
+    res.render('ResetPassword');
 });
+
+
+
+
 
 
 module.exports = router;

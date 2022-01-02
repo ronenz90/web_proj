@@ -22,6 +22,7 @@ var customerRouter = require('./routes/customer');
 var ChangePasswordRouter = require('./routes/ChangePassword');
 var MonthlyBillRouter = require('./routes/MonthlyBill');
 var ForgotPasswordRouter = require('./routes/ForgotPassword');
+var RepeatRouter = require('./routes/Repeat');
 var ResetPasswordRouter = require('./routes/ResetPassword');
 
 
@@ -48,6 +49,7 @@ app.use(`/Details`, detailRouter);
 app.use(`/ChangePassword`,ChangePasswordRouter );
 app.use(`/MonthlyBill`,MonthlyBillRouter);
 app.use(`/ForgotPassword`, ForgotPasswordRouter);
+app.use('/Repeat',RepeatRouter);
 app.use(`/ResetPassword`, ResetPasswordRouter);
 
 

@@ -2,7 +2,7 @@ var express = require('express');
 const mongoose = require('mongoose');
 const validator = require("validator");
 const User = require("../models/user");
-const Token = require("../models/Token")
+const Token = require("../models/Token");
 const nodemailer = require("nodemailer");
 const crypto = require("crypto");
 const router = express.Router();
@@ -17,8 +17,15 @@ router.post('/', function(req, res, next) {
         .exec()
         .then(result => {
             if (result) {
-                const token = GenerateToken(crypto.randomBytes(20).toString('hex'));
-                console.log(token)
+                const gen=crypto.randomBytes(20).toString('hex');
+                const token = GenerateToken(gen);
+                console.log(gen);
+                var passcode=new Token({
+                    Email:result.Email,
+                    Token:gen
+                });
+                passcode.save();
+                console.log(token);
                 // async... await is not allowed in global scope, must use a wrapper
                 async function MailToken() {
                     // Generate test SMTP service account from ethereal.email
@@ -27,12 +34,12 @@ router.post('/', function(req, res, next) {
 
                     // create reusable transporter object using the default SMTP transport
                     let transporter = nodemailer.createTransport({
-                        host: "smtp.ethereal.email",
-                        port: 587,
+                        host: "smtp.mailtrap.io",
+                        port: 2525,
                         secure: false, // true for 465, false for other ports
                         auth: {
-                            user: testAccount.user, // generated ethereal user
-                            pass: testAccount.pass, // generated ethereal password
+                            user: "f9ed41e4854196", // generated ethereal user
+                            pass: "d7f0bfa3069a77", // generated ethereal password
                         },
                     });
 
@@ -53,6 +60,7 @@ router.post('/', function(req, res, next) {
                 }
 
                 MailToken().catch(console.error);
+                res.redirect('/Repeat/'+result.Email);
             } else
                 res.status(500).json({
                     message: "Email is incorrect"
@@ -62,25 +70,9 @@ router.post('/', function(req, res, next) {
             console.log(err);
             window.confirm("Mail or Token is incorrect");
         });
-    res.render('ForgotPassword', { title: 'Forgot Password' });
 
 });
 
-router.post('/', function(req, res, next) {
-    User.findOne({Email: req.body.inputEmail})
-        .exec()
-        .then(result => {
-            if (Token.token === req.body.inputMailToken) {
-            res.redirect('/ResetPassword', {title: 'Reset Password'})}
-             else {
-                 console.log("token is wrong")
-                 res.status(500).json({
-                     message: "Wrong Code"
-                 });
-             }
-
-});
-
-});
 
 module.exports = router;
+

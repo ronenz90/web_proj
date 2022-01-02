@@ -1,15 +1,9 @@
-const mongoose = require("mongoose");
-const Schema = mongoose.Schema;
+const mongoose = require('mongoose');
 
-const tokenSchema = new Schema({
-    Email: {
-        type: String,
-        required: true,
-    },
-    token: {
-        type: String,
-        required: true,
-    },
+
+const customerSchema = mongoose.Schema({
+    Email:String,
+    Token:String
 });
 
-module.exports = mongoose.model("token", tokenSchema);
+module.exports = mongoose.model('token',customerSchema,"Token");
