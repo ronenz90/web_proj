@@ -32,8 +32,24 @@ Main Instructions:
 10.To logout choose logout.
 
 
+Link to Version Contole:
+https://github.com/ronenz90/web_proj.git
 
+Email Addresses:
 
-  
+- Noy5277@gmail.com
 
-  
+- Ronenz90ster@gmail.com
+
+- may.natanb@gmail.com
+
+- Ohad5025@gmail.com
+
+- meitalharonyan@gmail.com
+
+WEBSITE Address
+
+http://localhost:3000
+
+DataBase: 
+https://cloud.mongodb.com/
