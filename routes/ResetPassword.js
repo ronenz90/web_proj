@@ -12,8 +12,11 @@ router.get('/:Email', function(req, res, next) {
 
 router.post('/:Email',function (req,res,next)
 {
+    console.log(req.body.inputNewPassword);
     var schema= new passwordValidator();
-    const password=SetPassword(req.body.inputPassword);
+    const password=SetPassword(req.body.inputNewPassword);
+    console.log("salt="+password[0]);
+    console.log("hmac="+password[1]);
     if(req.body.inputNewPassword==req.body.inputConfirmPassword)
     {
         if(validator.isStrongPassword(req.body.inputNewPassword,{minLength: 10, minLowercase: 1,
@@ -22,7 +25,7 @@ router.post('/:Email',function (req,res,next)
         {
             User.findOneAndUpdate({Email:req.params.Email},{
                 Password:password[1],
-                salt:password[0],
+                Salt:password[0],
                 Tries:3
             }).exec();
             res.redirect('/');
