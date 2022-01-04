@@ -81,6 +81,11 @@ global.GetPassword=function (salt,password)  {
     return(hmac);
 }
 
+global.GenerateToken = function(string) {
+    const MailToken = crypto.createHash("sha1").update(string, "binary").digest("hex");
+    return(MailToken)
+}
+
 global.findUserById=function (id,res,callback)
 {
     User.findById(id)

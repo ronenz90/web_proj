@@ -14,8 +14,11 @@ router.post('/', function(req, res, next) {
             .then(doc => {
                 if (doc) {
                     console.log(doc.Password);
+                    console.log(doc.Salt);
+                    console.log(req.body.inputPassword);
                     console.log(GetPassword(doc.Salt, req.body.inputPassword));
-                    if(doc.Tries == 0)
+                    console.log(GetPassword(doc.Salt, req.body.inputPassword));
+                    if(doc.Tries <= 0)
                     {
                         res.redirect('/ForgotPassword');
                     }

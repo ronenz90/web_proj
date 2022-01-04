@@ -3,7 +3,7 @@ doctype
 html( lang="en" )
     head
 
-        title Communication-Login
+        title Communication
         meta( charset='utf-8' )
         meta( http-equiv='X-UA-Compatible', content='IE=edge' )
         meta( name='viewport', content='width=device-width, initial-scale=1.0' )
@@ -19,15 +19,10 @@ html( lang="en" )
         .row
             .col-md-5.col-sm-8.col-xs-12
                 .panel.panel-primary
-                    .panel-heading Reset Password
+                    .panel-heading Code Received
                     .panel-body
                         form(method='POST' action='')
                             div.form-group
-                                label(for='inputNewPassword') New Password:
-                                input#inputNewPassword.form-control(type='password' placeholder='Enter New Password' name='inputNewPassword')
-                            div.form-group
-                                label(for='inputConfirmPassword') Confirm Password:
-                                input#inputConfirmPassword.form-control(type='password' placeholder='Enter Confirm Password' name='inputConfirmPassword')
-                            br
-                            .col-md-5
-                                button.btn.btn-primary(type='submit') Submit
+                                label(for='inputMailToken')
+                                input#inputMailToken.form-control(type='token' placeholder='Enter Code (sent by mail):' name='inputMailToken')
+                            button.btn.btn-primary(type='reset password') Reset Password
